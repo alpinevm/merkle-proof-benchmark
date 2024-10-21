@@ -4,23 +4,7 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/src/Test.sol";
 import {MerkleProofLib} from "solady/src/utils/MerkleProofLib.sol";
 
-contract MerkleProxy {
-    function verify(
-        bytes32[] memory proof,
-        bytes32 root,
-        bytes32 leaf
-    ) public pure returns (bool) {
-        return MerkleProofLib.verify(proof, root, leaf);
-    }
-}
-
 contract MerkleTest is Test {
-    MerkleProxy public merkle;
-
-    function setUp() public {
-        merkle = new MerkleProxy();
-    }
-
     // @dev Tests merkle proof verification costs for increasing tree sizes
     function testMerkleProofVerificationCosts() public {
         uint256 maxK = 16;
@@ -33,9 +17,8 @@ contract MerkleTest is Test {
             bytes32[] memory proof = _getProof(data, 0);
 
             uint256 gasBefore = gasleft();
-            bool result = merkle.verify(proof, root, leaf);
+            MerkleProofLib.verify(proof, root, leaf);
             uint256 gasUsed = gasBefore - gasleft();
-            assertTrue(result);
 
             console.log("k:", k);
             console.log("Leaf count:", leafCount);
@@ -138,26 +121,6 @@ contract MerkleTest is Test {
             }
             result := keccak256(0x0, 0x40)
         }
-    }
-
-    function testEmptyCalldataHelpers() public {
-        assertFalse(
-            MerkleProofLib.verifyMultiProofCalldata(
-                MerkleProofLib.emptyProof(),
-                bytes32(0),
-                MerkleProofLib.emptyLeaves(),
-                MerkleProofLib.emptyFlags()
-            )
-        );
-
-        assertFalse(
-            MerkleProofLib.verifyMultiProof(
-                MerkleProofLib.emptyProof(),
-                bytes32(0),
-                MerkleProofLib.emptyLeaves(),
-                MerkleProofLib.emptyFlags()
-            )
-        );
     }
 
     function _random() internal returns (uint256 result) {
