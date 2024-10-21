@@ -27,5 +27,3 @@ Example: For a leaf count of 11, 2^3 (8) < 11 ≤ 2^4 (16), so k = 4 and the gas
 | 14 | 16,384    | 1,991    |
 | 15 | 32,768    | 2,125    |
 | 16 | 65,536    | 2,259    |
-
-Note: Gas costs increase linearly with tree size.
