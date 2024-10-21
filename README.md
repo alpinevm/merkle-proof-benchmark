@@ -9,6 +9,8 @@ For any leaf count n, the cost to verify will always be the value for 2^k where 
 
 Example: For a leaf count of 11, 2^3 (8) < 11 ≤ 2^4 (16), so k = 4 and the gas cost to verify a proof for a tree of this size would be ~651
 
+![benchmark image](./benchmark.png)
+
 | k | Leaf Count | Gas Used |
 |---|------------|----------|
 | 1 | 2          | 249      |
@@ -27,6 +29,10 @@ Example: For a leaf count of 11, 2^3 (8) < 11 ≤ 2^4 (16), so k = 4 and the gas
 | 14 | 16,384    | 1,991    |
 | 15 | 32,768    | 2,125    |
 | 16 | 65,536    | 2,259    |
+**Approximate**
+```
+y=134\log_{2}\left(n_{leaves}\right)+115
+```
 
 ## Run Benchmark
 ```
