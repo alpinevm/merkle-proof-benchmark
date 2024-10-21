@@ -1,6 +1,6 @@
 # Merkle Tree Solidity Gas Cost Analysis
 
-This project analyzes gas costs for Merkle tree proof verification, based on the [solady](https://github.com/vectorized/solady) implementation.
+Simple test to analyze gas costs for Merkle tree proof verification, based on the [solady](https://github.com/vectorized/solady) implementation.
 
 ## Gas Usage by Tree Size
 
